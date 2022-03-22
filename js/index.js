@@ -1,39 +1,133 @@
-// o header deve ter cor de fundo #2E948A
+//------------------ GERAL-------------------------------
 
+// 1- O header deve ter cor de fundo #2E948A
 let header = document.getElementsByTagName('header');
-// console.log(header[0]);
 header[0].style.backgroundColor = '#2E948A';
 
 
-// No menu do header, está faltando o link do item Cursos que deve redirecionar para cursos.html
-
+// 2- No menu do header, está faltando o link do item Cursos que deve redirecionar para cursos.html
 let linkCursos = document.querySelector('#menu_opcoes nav a:nth-child(1)');
-console.log(linkCursos);
-
 linkCursos.setAttribute('href', 'cursos.html');
 
 
-// Na etapa de depoimentos, o título deveria ser "O que falam sobre nós".
+//-------------------HOME-------------------------------
 
-let depoimentos = document.querySelector('.titulo.depoimento h3').innerHTML = 'O que falam sobre nós';
-console.log(depoimentos);
+let(page = window.location.pathname)
+
+if (page === 'index.html'){
+    // 1- No banner da home, está faltando centralizar os elementos filhos da section
+    let banner = document.querySelector('#introducao');
+    banner.style.justifyContent = 'center'; 
 
 
-// Na etapa de blog, o título deveria ser "Mais conteúdo pra você".
-let blog = document.querySelectorAll('.titulo h3')[1].innerHTML = 'Mais conteúdo pra você"';
-console.log(blog);
+    // 2- Na etapa de depoimentos, o título deveria ser "O que falam sobre nós".
+    let depoimentos = document.querySelector('.titulo.depoimento h3');
+    depoimentos.innerHTML = "O que falam sobre nós";
 
 
-// Todos os textos que estiverem com a classe.titulo devem apresentar todas as letras maiúsculas.
+    // 3- Na etapa de blog, o título deveria ser "Mais conteúdo pra você".
+    let blog = document.querySelectorAll('.titulo h3')[1].innerHTML = 'Mais conteúdo pra você';
 
-const lista = document.querySelectorAll('.titulo');
-for (let i = 0; i < lista.length; i++) {
-    lista[i].style.textTransform = 'uppercase';
+
+    // 4- Todos os textos que estiverem com a classe.titulo devem apresentar todas as letras maiúsculas.
+    const lista = document.querySelectorAll('.titulo');
+    for(let i = 0; i < lista.length; i++){
+        lista[i].style.textTransform = 'uppercase';
+    }
+
+
+    // 5- O botão "ver todos os posts" deve ter um link que direciona para o arquivo blog.html
+    let linkPost = document.querySelector('#todos_posts');
+    linkPost.setAttribute('href', 'blog.html')
+
+    // 6- Adicionar um novo curso na section que contém o id
+    let novoCurso = `<div id="independencia">
+    <img src="/imagens/independencia_financeira.png"
+    width="180px" alt="Independência Financeira">
+    <h2>Independência Financeira</h2>
+    <p>Duis aute irure dolor in reprehenderit in voluptate
+    velit esse cillum dolore
+    eu fugiat nulla pariatur. </p>
+    <a class="comecar_agora" href="./curso.html">começar
+    agora</a>
+    </div>`
+
+    document.querySelector('#investimentos_poupando_independencia').innerHTML += novoCurso
 }
 
 
-// o botão "ver todos os posts" deve ter um link que direciona para o arquivo blog.html
-let linkPost = document.querySelector('#todos_posts');
-console.log(linkPost);
 
-linkPost.setAttribute('href', 'blog.html');
+//-------------------CONTATO-------------------------------
+
+if (page === 'contato.html'){
+    //  1 O formulário não está funcionando, o atributo action deve mandar para url sucesso.html
+    let contact = document.querySelector("#formulario form");
+    contact.setAttribute("action", "sucesso.html");
+
+    //  2 Após o campo de email, precisamos de um novo campo para que o usuário adicione também um número de telefone.
+    let tel = document.createElement("input");
+    let inputTel = document.querySelector("textarea");
+    let adicionarTel = inputTel.insertAdjacentElement("beforebegin", tel);
+    adicionarTel.setAttribute("type", "email");
+    adicionarTel.setAttribute("required", "");
+    adicionarTel.setAttribute("placeholder", "fone");
+
+    //  3 O campo de mensagem está ultrapassando o tamanho do elemento pai.
+    inputTel.style.boxSizing="border-box";
+
+    //  4 O botão não está do tamanho adequado, precisa ter uma largura maior
+    let botaoContato = document.querySelector("#enviar");
+    botaoContato.style.width="144px";
+
+    //  5 Abaixo da section do formulário, adicione uma seção de comentário igual a página Home.
+    let feedbacks = 
+                            `<section class="titulo depoimento">
+                                <h3>Depoimentos</h3>
+                            </section>
+                            <section id="falam_sobre">
+                                <div class="depoimentos">
+                                    <img src="./imagens/icon-wally.png" width="80px" height="80px" alt="depoimentos da dindim" />
+                                    <p>
+                                        ”Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                        laudantium, totam rem aperiam.”
+                                        <br />
+                                        <br />
+                                        Wally, 25
+                                    </p>
+                                </div>
+                                <div class="depoimentos">
+                                    <img src="./imagens/icon-jaden.png" width="80px" height="80px" alt="depoimentos da dindim" />
+                                    <p>
+                                        ”Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                        laudantium, totam rem aperiam.”
+                                        <br />
+                                        <br />
+                                        Jaden Smith, 23
+                                    </p>
+                                </div>
+                                <div class="depoimentos">
+                                    <img src="./imagens/icon-whoopi.png" width="80px" height="80px" alt="depoimentos da dindim" />
+                                    <p>
+                                        ”Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                        laudantium, totam rem aperiam.”
+                                        <br />
+                                        <br />
+                                        Whoopi Goldberg, 37
+                                    </p>
+                                </div>
+                                <div class="depoimentos">
+                                    <img src="./imagens/icon-jane.png" width="80px" height="80px" alt="depoimentos da dindim" />
+                                    <p>
+                                        ”Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                        laudantium, totam rem aperiam.”
+                                        <br />
+                                        <br />
+                                        Janes Joplin, 29
+                                    </p>
+                                </div>
+                            </section>`;
+
+    let addFeedbacks = document.querySelector("main");
+    addFeedbacks.innerHTML += feedbacks;
+
+}
